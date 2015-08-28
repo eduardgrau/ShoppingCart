@@ -1,5 +1,7 @@
 # Readme.md
 
+#Author: Eduard Grau Pérez
+
 We want to open a grocery store that will revolutionanise the way people buy food.  We only sell three products:
  
 Product code | Name         | Price
