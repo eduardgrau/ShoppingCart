@@ -44,16 +44,16 @@ namespace ShoppingCart
             cart.AddItem("FR1");
             cart.AddItem("FR1");
             cart.AddItem("CF1");
-            Console.WriteLine("Expected : \u00A322.45" + cart.GetTotal());
-            Console.Write(cart.ToString());
+            Console.WriteLine("Expected : \u00A322.45");
+            Console.WriteLine(cart.ToString());
 
 
             cart = new Cart();
             cart.AddItem("Cart 2");
             cart.AddItem("FR1");
             cart.AddItem("FR1");
-            Console.WriteLine("Expected : \u00A33.11" + cart.GetTotal());
-            Console.Write(cart.ToString());
+            Console.WriteLine("Expected : \u00A33.11");
+            Console.WriteLine(cart.ToString());
 
             cart = new Cart();
             cart.AddItem("Cart 3");
@@ -61,8 +61,8 @@ namespace ShoppingCart
             cart.AddItem("SR1");
             cart.AddItem("FR1");
             cart.AddItem("SR1");
-            Console.WriteLine("Expected : \u00A316.61" + cart.GetTotal());
-            Console.Write(cart.ToString());
+            Console.WriteLine("Expected : \u00A316.61");
+            Console.WriteLine(cart.ToString());
         }
     }
 }

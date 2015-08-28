@@ -9,10 +9,10 @@ namespace ShoppingCart
     {
         public override string ToString()
         {
-            var sb = new StringBuilder("The cart has the following items: ");
+            var sb = new StringBuilder("The cart has the following items: \n");
             foreach (var productVM in Products)
             {
-                sb.AppendLine(productVM.Product.Name + "   Qty: " + productVM.Quantity + "  SubTotal: "+ productVM.Subtotal);
+                sb.AppendLine(productVM.Product.Name + "   Qty: " + productVM.Quantity);
             }
             sb.AppendLine("Total :  \u00A3" + this.GetTotal());
             return sb.ToString();
