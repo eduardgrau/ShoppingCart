@@ -7,12 +7,6 @@ namespace ShoppingCart
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Pre Start");
-            if (args != null && args.Any())
-            {
-                Console.WriteLine(args[0]);
-            }
-            Console.WriteLine("Start");
             Console.WriteLine("You can choose between introducing a string in the format \"SR1,FR1,CF1\"");
             Console.WriteLine("or press enter and show the results of the test data provided");
 
@@ -38,7 +32,7 @@ namespace ShoppingCart
             {
                 Console.WriteLine("There was an error trying to find the product :" + inputItem);
             }
-            Console.WriteLine("Result: " + cart.GetTotal());
+            Console.Write(cart.ToString());
         }
 
         private static void TestExamples()
@@ -50,13 +44,16 @@ namespace ShoppingCart
             cart.AddItem("FR1");
             cart.AddItem("FR1");
             cart.AddItem("CF1");
-            Console.WriteLine("Expected : 22.45, Result: " + cart.GetTotal());
+            Console.WriteLine("Expected : \u00A322.45" + cart.GetTotal());
+            Console.Write(cart.ToString());
+
 
             cart = new Cart();
             cart.AddItem("Cart 2");
             cart.AddItem("FR1");
             cart.AddItem("FR1");
-            Console.WriteLine("Expected : 3.11, Result: " + cart.GetTotal());
+            Console.WriteLine("Expected : \u00A33.11" + cart.GetTotal());
+            Console.Write(cart.ToString());
 
             cart = new Cart();
             cart.AddItem("Cart 3");
@@ -64,7 +61,8 @@ namespace ShoppingCart
             cart.AddItem("SR1");
             cart.AddItem("FR1");
             cart.AddItem("SR1");
-            Console.WriteLine("Expected : 16.61, Result: " + cart.GetTotal());
+            Console.WriteLine("Expected : \u00A316.61" + cart.GetTotal());
+            Console.Write(cart.ToString());
         }
     }
 }

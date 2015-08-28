@@ -1,10 +1,23 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ShoppingCart
 {
     public class Cart
     {
+        public override string ToString()
+        {
+            var sb = new StringBuilder("The cart has the following items: ");
+            foreach (var productVM in Products)
+            {
+                sb.AppendLine(productVM.Product.Name + "   Qty: " + productVM.Quantity + "  SubTotal: "+ productVM.Subtotal);
+            }
+            sb.AppendLine("Total :  \u00A3" + this.GetTotal());
+            return sb.ToString();
+        }
+
         public class ProductVM
         {
             public Product Product { get; set; }
