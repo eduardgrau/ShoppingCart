@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShoppingCart
 {
@@ -17,30 +14,48 @@ namespace ShoppingCart
                 Console.WriteLine(args[0]);
             }
             Console.WriteLine("Start");
-            
-            var cart = new Cart();
-            cart.AddItem("Cart 1");
-            cart.AddItem("FR1");
-            cart.AddItem("SR1");
-            cart.AddItem("FR1");
-            cart.AddItem("FR1");
-            cart.AddItem("CF1");
-            Console.WriteLine("Expected : 22.45, Result: " + cart.GetTotal());
+            Console.WriteLine("You can choose between introducing a string in the format \"SR1,FR1,CF1\"");
+            Console.WriteLine("or press enter and show the results of the test data provided");
 
+            var input = Console.ReadLine();
+            Cart cart;
+            if (string.IsNullOrEmpty(input))
+            {
+                cart = new Cart();
+                cart.AddItem("Cart 1");
+                cart.AddItem("FR1");
+                cart.AddItem("SR1");
+                cart.AddItem("FR1");
+                cart.AddItem("FR1");
+                cart.AddItem("CF1");
+                Console.WriteLine("Expected : 22.45, Result: " + cart.GetTotal());
 
-            cart = new Cart();
-            cart.AddItem("Cart 2");
-            cart.AddItem("FR1");
-            cart.AddItem("FR1");
-            Console.WriteLine("Expected : 3.11, Result: " + cart.GetTotal());
+                cart = new Cart();
+                cart.AddItem("Cart 2");
+                cart.AddItem("FR1");
+                cart.AddItem("FR1");
+                Console.WriteLine("Expected : 3.11, Result: " + cart.GetTotal());
 
-            cart = new Cart();
-            cart.AddItem("Cart 3");
-            cart.AddItem("SR1");
-            cart.AddItem("SR1");
-            cart.AddItem("SR1");
-            cart.AddItem("FR1");
-            Console.WriteLine("Expected : 16.61, Result: " + cart.GetTotal());
+                cart = new Cart();
+                cart.AddItem("Cart 3");
+                cart.AddItem("SR1");
+                cart.AddItem("SR1");
+                cart.AddItem("FR1");
+                cart.AddItem("SR1");
+                Console.WriteLine("Expected : 16.61, Result: " + cart.GetTotal());
+            }
+            else
+            {
+                cart = new Cart();
+                var inputList = input.Split(',');
+                foreach (var inputItem in inputList)
+                {
+                    if (cart.AddItem(inputItem) == 0) continue;
+                    Console.WriteLine("There was an error trying to find the product :" + inputItem);
+                }
+                Console.WriteLine("Result: " + cart.GetTotal());
+            }
+           
 
             Console.WriteLine("End ... Press any key to exit the program");
             Console.ReadLine();
@@ -86,7 +101,7 @@ namespace ShoppingCart
     class Cart
     {
         public List<ProductVM> Products = new List<ProductVM>();
-        public void applyRules(Cart cart)
+        public void ApplyRules(Cart cart)
         {
             cart.Rule1();
             cart.Rule2();
@@ -96,7 +111,7 @@ namespace ShoppingCart
         public double GetTotal()
         {
             Products.ForEach(vm=>vm.Subtotal=vm.Quantity*vm.Product.Price);
-            applyRules(this);
+            ApplyRules(this);
             double total = Products.Sum(productVM => productVM.Subtotal);
             return total;
         }
